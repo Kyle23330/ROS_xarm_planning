@@ -1,0 +1,8 @@
+<link name="environment_config">
+    <visual>
+        <geometry>
+            <mesh filename="package://xarm_ros/xarm_gazebo/worlds/FullAssemblyVirtual_one.stl"/>
+        </geometry>
+    </visual>
+</link>
+

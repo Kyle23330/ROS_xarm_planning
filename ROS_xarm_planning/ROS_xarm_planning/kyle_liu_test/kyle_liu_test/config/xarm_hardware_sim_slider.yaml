@@ -1,0 +1,15 @@
+generic_hw_control_loop:
+  loop_hz: 100
+  cycle_time_error_threshold: 0.01
+
+hardware_interface:
+  joints:
+    - sliding_joint
+    - joint1
+    - joint2
+    - joint3
+    - joint4
+    - joint5
+    - joint6
+    - joint7
+  sim_control_mode: 0  # 0: position, 1: velocity

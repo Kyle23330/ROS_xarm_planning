@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="xarm"/>
+  <arg name="add_slider" default="false" />
+  
+  <!-- GDB functionality -->
+  <arg name="debug" default="false"/>
+  <arg unless="$(arg debug)" name="launch_prefix" value=""/>
+  <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args"/>
+  
+  <!-- Load hardware interface -->
+  
+  
+  <rosparam file="$(find kyle_liu_test)/config/xarm_hardware_sim.yaml" ns="/$(arg namespace)"/>
+  <rosparam if="$(arg add_slider)" file="$(find kyle_liu_test)/config/xarm_hardware_sim_slider.yaml" ns="/$(arg namespace)"/>
+  <node name="sim_hw_interface" pkg="ros_control_boilerplate" type="sim_hw_main" 
+        output="screen" ns="/$(arg namespace)" launch-prefix="$(arg launch_prefix)">
+  </node>
+
+</launch>

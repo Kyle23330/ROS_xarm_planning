@@ -1,0 +1,23 @@
+<launch>
+	<arg name="add_gripper" default="false"/>
+	<arg name="add_slider" default="false"/>
+  <!-- Set the param that trajectory_execution_manager needs to find the controller plugin -->
+  <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
+  <!-- Disable the exec duration monitoring  -->
+  <param name="trajectory_execution/execution_duration_monitoring" value="false"/>
+  <!-- The rest of the params are specific to this plugin -->
+      <group>
+        <group if="$(arg add_gripper)">
+    	  <!-- If add_gripper is true, now check if add_slider is true or false -->
+          <rosparam if="$(arg add_slider)" file="$(find xarm7_moveit_config)/config/controllers_with_gripper.yaml"/>
+          <rosparam unless="$(arg add_slider)" file="$(find xarm7_moveit_config)/config/controllers_with_gripper.yaml"/>
+        </group>
+
+        <group unless="$(arg add_gripper)">
+          <!-- If add_gripper is false, now check if add_slider is true or false -->
+          <rosparam if="$(arg add_slider)" file="$(find xarm7_moveit_config)/config/controllers_slider.yaml"/>
+          <rosparam unless="$(arg add_slider)" file="$(find xarm7_moveit_config)/config/controllers.yaml"/>
+       </group>
+     </group>
+
+</launch>

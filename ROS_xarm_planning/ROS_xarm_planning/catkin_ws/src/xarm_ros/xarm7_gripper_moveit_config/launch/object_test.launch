@@ -1,0 +1,8 @@
+<launch>
+  <!-- Load the object URDF into a parameter -->
+  <param name="robot_description" command="xacro --inorder  '$(find xarm_gazebo)/worlds/environment_stl.urdf'" />
+
+  <!-- Launch RViz with the robot description -->
+  <node name="rviz" pkg="rviz" type="rviz" args="" />
+</launch>
+
